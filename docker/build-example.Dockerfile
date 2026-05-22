@@ -17,11 +17,14 @@ COPY src/hello.cpp .
 
 RUN emcc hello.cpp \
     --bind \
+    --emit-tsd hello.d.ts \
     -s MODULARIZE=1 \
     -s EXPORT_NAME='initHelloModule' \
     -s ALLOW_MEMORY_GROWTH=1 \
     -O3 \
     -o hello.js
+
+
 
 # ---------------------------------------------------------------------------
 # Stage 2: export artifacts only (requires BuildKit --output)

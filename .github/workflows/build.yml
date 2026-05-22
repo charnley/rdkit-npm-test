@@ -29,6 +29,12 @@ jobs:
       - name: List dist contents
         run: ls -lh dist/
 
+      - name: 
+        run: cat ./hello.js
+
+      - name: 
+        run: cat ./hello.d.ts
+
 #      - name: Upload artifacts
 #        uses: actions/upload-artifact@v4
 #        with:
