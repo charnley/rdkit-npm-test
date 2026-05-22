@@ -24,11 +24,10 @@ RUN emcc hello.cpp \
     -O3 \
     -o hello.js
 
-
-
 # ---------------------------------------------------------------------------
 # Stage 2: export artifacts only (requires BuildKit --output)
 # ---------------------------------------------------------------------------
 FROM scratch AS export-stage
 COPY --from=build-stage /src/hello.js /
 COPY --from=build-stage /src/hello.wasm /
+COPY --from=build-stage /src/hello.d.ts /
