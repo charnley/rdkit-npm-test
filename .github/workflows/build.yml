@@ -1,0 +1,36 @@
+name: Build WASM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build WASM assets
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: docker/build-example.Dockerfile
+          outputs: type=local,dest=dist
+          push: false
+
+      - name: List dist contents
+        run: ls -lh dist/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm-dist
+          path: dist/
