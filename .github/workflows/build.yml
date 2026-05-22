@@ -30,10 +30,10 @@ jobs:
         run: ls -lh dist/
 
       - name: 
-        run: cat ./hello.js
+        run: cat ./dist/hello.js
 
       - name: 
-        run: cat ./hello.d.ts
+        run: cat ./dist/hello.d.ts
 
 #      - name: Upload artifacts
 #        uses: actions/upload-artifact@v4
