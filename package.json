@@ -5,6 +5,10 @@
   "type": "module",
   "main": "dist/hello.js",
   "types": "dist/hello.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/charnley/rdkit-npm-test"
+  },
   "exports": {
     ".": {
       "import": "./dist/hello.js"
