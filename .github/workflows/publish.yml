@@ -78,8 +78,3 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --access public
-        continue-on-error: true
-
-      - name: Show npm debug log
-        if: always()
-        run: cat /home/runner/.npm/_logs/*.log | tail -100
