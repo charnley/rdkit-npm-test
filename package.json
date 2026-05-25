@@ -4,6 +4,7 @@
   "description": "",
   "type": "module",
   "main": "dist/hello.js",
+  "types": "dist/hello.d.ts",
   "exports": {
     ".": {
       "import": "./dist/hello.js"

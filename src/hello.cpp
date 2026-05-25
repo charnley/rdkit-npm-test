@@ -9,6 +9,6 @@ std::string greet(const std::string& name) {
 }
 
 EMSCRIPTEN_BINDINGS(hello_module) {
-    emscripten::function("add", &add);
-    emscripten::function("greet", &greet);
+    emscripten::function("add(a, b)", &add);
+    emscripten::function("greet(name)", &greet);
 }
