@@ -17,6 +17,8 @@ COPY src/hello.cpp .
 
 RUN emcc hello.cpp \
     --bind \
+    --emit-tsd hello.d.ts \
+    -s EXPORT_ES6=1 -s USE_ES6_IMPORT_META=1 \
     -s MODULARIZE=1 \
     -s EXPORT_NAME='initHelloModule' \
     -s ALLOW_MEMORY_GROWTH=1 \
@@ -35,6 +37,5 @@ RUN emcc hello.cpp \
 # ---------------------------------------------------------------------------
 FROM scratch AS export-stage
 COPY --from=build-stage /src/hello.js /
-COPY --from=build-stage /src/hello.mjs /
 COPY --from=build-stage /src/hello.wasm /
 COPY --from=build-stage /src/hello.d.ts /
