@@ -17,17 +17,24 @@ COPY src/hello.cpp .
 
 RUN emcc hello.cpp \
     --bind \
-    --emit-tsd hello.d.ts \
     -s MODULARIZE=1 \
     -s EXPORT_NAME='initHelloModule' \
     -s ALLOW_MEMORY_GROWTH=1 \
     -O3 \
     -o hello.js
 
+# CJS shim → hello.js (for require())
+# RUN printf '\nif (typeof module !== "undefined") module.exports = initHelloModule;\n' >> hello.js
+
+# ESM shim → hello.mjs (for import)
+#RUN cp hello.js hello.mjs && \
+#    printf '\nexport default initHelloModule;\n' >> hello.mjs
+
 # ---------------------------------------------------------------------------
 # Stage 2: export artifacts only (requires BuildKit --output)
 # ---------------------------------------------------------------------------
 FROM scratch AS export-stage
 COPY --from=build-stage /src/hello.js /
+COPY --from=build-stage /src/hello.mjs /
 COPY --from=build-stage /src/hello.wasm /
 COPY --from=build-stage /src/hello.d.ts /
