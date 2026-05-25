@@ -7,7 +7,7 @@
   "types": "dist/hello.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/charnley/rdkit-npm-test"
+    "url": "git+https://github.com/charnley/rdkit-npm-test.git"
   },
   "exports": {
     ".": {
